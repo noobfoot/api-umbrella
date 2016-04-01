@@ -15,6 +15,11 @@ class Admin::Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     redirect_to admin_path
   end
 
+  def ldap
+    @email = request.env["omniauth.auth"]["info"]["email"]
+    login
+  end
+
   def cas
     @email = request.env["omniauth.auth"]["uid"]
     login
